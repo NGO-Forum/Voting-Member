@@ -49,7 +49,7 @@
     </header>
 
     {{-- Main Page Content --}}
-    <main class="flex-1 max-w-8xl mx-auto w-full px-4 md:px-6 py-4">
+    <main class="flex-1 max-w-8xl mx-auto w-full px-4 py-4">
         @yield('content')
     </main>
 

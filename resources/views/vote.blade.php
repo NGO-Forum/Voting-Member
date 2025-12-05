@@ -27,7 +27,7 @@
             {{-- Grid --}}
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 @foreach ($candidates as $candidate)
-                    <div class="border rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition">
+                    <div class="border rounded-xl p-5 mt-2 bg-white shadow-sm hover:shadow-md transition">
 
                         <div class="flex items-start gap-4">
                             <img src="{{ $candidate->photo }}"
