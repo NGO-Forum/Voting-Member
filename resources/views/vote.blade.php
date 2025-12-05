@@ -64,7 +64,7 @@
             </div>
 
             <p class="text-gray-500 text-sm mt-3">
-                អតិបរមា ៣ — ប្រព័ន្ធនឹងបិទការជ្រើសរើសបន្ទាប់ពីអាច់៦។
+                អតិបរមា ៣ — ប្រព័ន្ធនឹងបិទការជ្រើសរើសបន្ទាប់ពីថ្ងៃកំណត់។
             </p>
 
             <button class="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold">
