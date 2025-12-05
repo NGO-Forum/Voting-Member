@@ -3,7 +3,7 @@
 @section('content')
     <div class="bg-white p-6 md:p-8 rounded-xl shadow overflow-y-auto h-auto md:h-[85vh] lg:h-[75vh] small-scroll space-y-1">
 
-        <h2 class="text-xl md:text-2xl font-bold mb-2">ជ្រើសរើសបេក្ខជន (អតិបរមា ៣)</h2>
+        <h2 class="text-xl md:text-2xl font-bold mb-2">ជ្រើសរើសបេក្ខជន (អតិបរមា ៥)</h2>
         <p class="text-gray-500 mb-4">
             Member ID: <strong>{{ $member->member_id }}</strong>
         </p>
@@ -64,7 +64,7 @@
             </div>
 
             <p class="text-gray-500 text-sm mt-3">
-                អតិបរមា ៣ — ប្រព័ន្ធនឹងបិទការជ្រើសរើសបន្ទាប់ពីថ្ងៃកំណត់។
+                អតិបរមា ៥ — ប្រព័ន្ធនឹងបិទការជ្រើសរើសបន្ទាប់ពីថ្ងៃកំណត់។
             </p>
 
             <button class="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold">
@@ -77,7 +77,7 @@
     {{-- JS to limit 3 selections --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const max = 3;
+            const max = 5;
             const all = document.querySelectorAll("input[name='candidates[]']");
 
             function check() {
