@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->string('member_id')->unique();
+            $table->string('full_name');
+            $table->string('short_name');
             $table->boolean('has_voted')->default(false);
             $table->timestamps();
         });

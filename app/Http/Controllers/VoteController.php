@@ -12,49 +12,50 @@ class VoteController extends Controller
     // Login page
     public function loginForm()
     {
-        return view('login');
+        $ngos = Member::select('full_name', 'short_name')->orderBy('full_name')->get();
+        return view('login', compact('ngos'));
     }
 
     // Handle login
     public function login(Request $request)
     {
         $request->validate([
-            'member_id' => 'required'
+            'login_input' => 'required'
         ]);
 
-        // Check if member already exists
-        $member = Member::where('member_id', $request->member_id)->first();
+        $input = trim($request->login_input);
 
-        // If exists and login_locked = true → BLOCK login
-        if ($member && $member->login_locked) {
-            return back()->with('error', 'លេខ​ សម្គាល់ ( Member ID ) នេះបានចូលប្រើរួចម្តងហើយ។ មិនអាចចូលម្ដងទៀតបានទេ។');
-        }
+        // Find by full name, short name, or member ID
+        $member = Member::where('full_name', 'LIKE', $input)
+            ->orWhere('short_name', 'LIKE', $input)
+            ->first();
 
-        // If member not exist → create & lock immediately
+        // Not found → reject
         if (!$member) {
-            $member = Member::create([
-                'member_id' => $request->member_id,
-                'login_locked' => true
-            ]);
-        } else {
-            // If exists and not locked → lock it now
-            $member->update([
-                'login_locked' => true
-            ]);
+            return back()->with('error', 'ឈ្មោះ NGO ឬ Short Name មិនត្រឹមត្រូវទេ!');
         }
 
-        // Save the active login session
-        session(['member_id' => $member->id]);
+        // Already logged in → block
+        if ($member->login_locked) {
+            return back()->with('error', 'NGO នេះបានចូលប្រើរួចម្តងហើយ!');
+        }
+
+        // Lock login immediately
+        $member->update(['login_locked' => true]);
+
+        // Save to session
+        session(['member_id' => $member->short_name]);
 
         return redirect('/vote');
     }
 
 
 
+
     // Show voting form
     public function voteForm()
     {
-        $member = Member::findOrFail(session('member_id'));
+        $member = Member::where('short_name', session('member_id'))->firstOrFail();
 
         if ($member->has_voted) {
             return view('already_voted');
@@ -69,11 +70,12 @@ class VoteController extends Controller
     public function submitVote(Request $request)
     {
         $request->validate([
-            'candidates' => 'required|array|max:3',
+            'candidates' => 'required|array|max:5',
             'candidates.*' => 'exists:candidates,id',
         ]);
 
-        $member = Member::findOrFail(session('member_id'));
+         // Get member by short_name (fix)
+        $member = Member::where('short_name', session('member_id'))->firstOrFail();
 
         if ($member->has_voted) {
             return redirect()->route('vote.form')->with('error', 'You have already voted.');

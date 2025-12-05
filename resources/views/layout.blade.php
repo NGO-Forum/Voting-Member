@@ -10,6 +10,9 @@
     {{-- TailwindCSS --}}
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Alpine.js -->
+    <script src="https://unpkg.com/alpinejs" defer></script>
+
     {{-- Khmer Font --}}
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
