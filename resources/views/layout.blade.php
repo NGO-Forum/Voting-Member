@@ -44,7 +44,7 @@
     <header class="bg-white shadow text-center">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <h1 class="text-xl md:text-3xl font-bold text-blue-600">
-                🗳️ ការបោះឆ្នោតសមាជិកបណ្តាញ ឆ្នាំ ២០២៥
+                🗳️ ការបោះឆ្នោតសមាជិកបណ្តាញ NRLG ឆ្នាំ ២០២៥
             </h1>
             <p class="text-gray-500 mt-1 text-xs md:text-base">ប្រព័ន្ធបោះឆ្នោតតាមប្រព័ន្ធអេឡិកត្រូនិច។​ សូមជ្រើសរើសបេក្ខជនច្រើនបំផុត ៥ នាក់
                 នឹង អាចជ្រើសរើសបានម្តង១ប៉ុណ្ណោះ!</p>
@@ -55,13 +55,6 @@
     <main class="flex-1 max-w-8xl mx-auto w-full px-4 py-4">
         @yield('content')
     </main>
-
-    {{-- Footer --}}
-    <footer class="bg-white border-t py-4">
-        <p class="text-center text-gray-500 text-sm">
-            © 2025 Network Election System — All Rights Reserved
-        </p>
-    </footer>
 
 </body>
 

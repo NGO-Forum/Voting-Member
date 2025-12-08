@@ -58,6 +58,7 @@ class NgoSeeder extends Seeder
             ['full_name' => 'Village Support Group', 'short_name' => 'VSG'],
             ['full_name' => 'Wildlife Conservation Society Cambodia', 'short_name' => 'WCS'],
             ['full_name' => 'Youth Council of Cambodia', 'short_name' => 'YCC'],
+            ['full_name' => 'Ponlork Khmer Organization', 'short_name' => 'PKH'],
         ];
 
         foreach ($ngos as $ngo) {

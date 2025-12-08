@@ -1,11 +1,11 @@
 @extends('layout')
 
 @section('content')
-    <div class="bg-white p-6 md:p-8 rounded-xl shadow overflow-y-auto h-auto md:h-[85vh] lg:h-[75vh] small-scroll space-y-1">
+    <div class="bg-white p-6 md:p-8 rounded-xl shadow overflow-y-auto h-auto md:h-[92vh] lg:h-[82vh] small-scroll space-y-1">
 
-        <h2 class="text-xl md:text-2xl font-bold mb-2">ជ្រើសរើសបេក្ខជន (អតិបរមា ៥)</h2>
+        <h2 class="text-xl md:text-2xl font-bold mb-2">សូមជ្រើសរើសបេក្ខជនចំនួន​ ៥</h2>
         <p class="text-gray-500 mb-4">
-            Member ID: <strong>{{ $member->member_id }}</strong>
+            NGO Name: <strong>{{ $member->short_name }}</strong>
         </p>
 
         {{-- Errors --}}
@@ -25,7 +25,7 @@
             @csrf
 
             {{-- Grid --}}
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="grid gap-6 lg:gap-7 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($candidates as $candidate)
                     <div class="border rounded-xl p-5 mt-2 bg-white shadow-sm hover:shadow-md transition">
 
@@ -52,9 +52,10 @@
                                 <input type="checkbox" name="candidates[]" value="{{ $candidate->id }}" class="peer hidden">
 
                                 <div
-                                    class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold
-                                    hover:bg-blue-700 peer-checked:bg-gray-500 transition">
-                                    ជ្រើសរើស
+                                    class="w-7 h-7 border-2 border-blue-600 rounded-md flex items-center justify-center
+                                        text-transparent peer-checked:text-green-600 peer-checked:border-green-600
+                                        peer-checked:bg-green-50 transition text-lg font-bold">
+                                    ✅
                                 </div>
                             </label>
                         </div>
@@ -64,7 +65,7 @@
             </div>
 
             <p class="text-gray-500 text-sm mt-3">
-                អតិបរមា ៥ — ប្រព័ន្ធនឹងបិទការជ្រើសរើសបន្ទាប់ពីថ្ងៃកំណត់។
+                ប្រព័ន្ធនឹងបិទការជ្រើសរើសបន្ទាប់ពីថ្ងៃទី ១៥ ខែធ្នូ ឆ្នាំ២០២៥។
             </p>
 
             <button class="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold">

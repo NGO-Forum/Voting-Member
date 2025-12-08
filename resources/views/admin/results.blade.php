@@ -16,15 +16,20 @@
     </div>
 
     {{-- Total votes --}}
-    <div class="bg-blue-50 border border-blue-200 text-blue-700 rounded-xl px-5 py-4 shadow mb-4">
+    <div class="flex justify-between bg-blue-50 border border-blue-200 text-blue-700 rounded-xl px-5 py-4 shadow mb-4">
         <p class="text-lg font-semibold">
             🗳️ សរុបការបោះឆ្នោត:
             <span class="font-bold text-blue-900">{{ $totalVotes }}</span> សន្លឹក
         </p>
+        <a href="{{ route('admin.results.pdf') }}"
+            class="px-3 py-1 rounded-lg bg-green-600 text-white font-semibold hover:bg-green-700 transition">
+            📥 ទាញយក PDF
+        </a>
     </div>
 
     {{-- Candidate Results Grid --}}
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 overflow-y-auto h-auto md:h-[65vh] lg:h-[51vh] small-scroll space-y-1">
+    <div
+        class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 overflow-y-auto h-auto md:h-[72vh] lg:h-[58vh] small-scroll space-y-1">
 
         @foreach ($candidates as $index => $candidate)
             @php
@@ -50,7 +55,7 @@
                     <img src="{{ $candidate->photo }}" class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border">
 
                     <div>
-                        <h3 class="text-xl font-bold">{{ $candidate->name }}</h3>
+                        <h3 class="text-lg font-bold">{{ $candidate->name }}</h3>
                         <p class="italic text-gray-500 mt-2">{{ $candidate->meta }}</p>
                     </div>
                 </div>

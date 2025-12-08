@@ -25,31 +25,33 @@ class VoteController extends Controller
 
         $input = trim($request->login_input);
 
-        // Find by full name, short name, or member ID
         $member = Member::where('full_name', 'LIKE', $input)
             ->orWhere('short_name', 'LIKE', $input)
             ->first();
 
-        // Not found → reject
         if (!$member) {
             return back()->with('error', 'ឈ្មោះ NGO ឬ Short Name មិនត្រឹមត្រូវទេ!');
         }
 
-        // Already logged in → block
-        if ($member->login_locked) {
-            return back()->with('error', 'NGO នេះបានចូលប្រើរួចម្តងហើយ!');
+        // Case 1: Already voted -> block completely
+        if ($member->has_voted) {
+            return back()->with('error', 'NGO នេះបានបោះឆ្នោតរួចហើយ!');
         }
 
-        // Lock login immediately
+        // Case 2: Already logged in earlier but never submitted vote
+        if ($member->login_locked && !$member->has_voted) {
+            // auto-restore the session and send to vote page
+            session(['member_id' => $member->short_name]);
+            return redirect('/vote');
+        }
+
+        // First-time login -> lock and continue
         $member->update(['login_locked' => true]);
 
-        // Save to session
         session(['member_id' => $member->short_name]);
 
         return redirect('/vote');
     }
-
-
 
 
     // Show voting form
@@ -74,11 +76,11 @@ class VoteController extends Controller
             'candidates.*' => 'exists:candidates,id',
         ]);
 
-         // Get member by short_name (fix)
+        // Get member by short_name (fix)
         $member = Member::where('short_name', session('member_id'))->firstOrFail();
 
         if ($member->has_voted) {
-            return redirect()->route('vote.form')->with('error', 'You have already voted.');
+            return redirect()->route('vote.form')->with('error', 'NGO នេះបានបោះឆ្នោតរួចហើយ!');
         }
 
         foreach ($request->candidates as $candidateId) {
