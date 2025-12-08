@@ -29,7 +29,7 @@
 
     {{-- Candidate Results Grid --}}
     <div
-        class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 overflow-y-auto h-auto md:h-[72vh] lg:h-[58vh] small-scroll space-y-1">
+        class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 space-y-1">
 
         @foreach ($candidates as $index => $candidate)
             @php

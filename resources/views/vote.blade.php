@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <div class="bg-white p-6 md:p-8 rounded-xl shadow overflow-y-auto h-auto md:h-[92vh] lg:h-[82vh] small-scroll space-y-1">
+    <div class="bg-white p-6 md:p-8 rounded-xl shadow space-y-1">
 
         <h2 class="text-xl md:text-2xl font-bold mb-2">សូមជ្រើសរើសបេក្ខជនចំនួន​ ៥</h2>
         <p class="text-gray-500 mb-4">
@@ -25,7 +25,7 @@
             @csrf
 
             {{-- Grid --}}
-            <div class="grid gap-6 lg:gap-7 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="grid gap-6 lg:gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 @foreach ($candidates as $candidate)
                     <div class="border rounded-xl p-5 mt-2 bg-white shadow-sm hover:shadow-md transition">
 
