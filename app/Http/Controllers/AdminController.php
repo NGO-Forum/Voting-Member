@@ -62,8 +62,28 @@ class AdminController extends Controller
 
     public function ngosList()
     {
-        // Get all NGOs (members)
-        $ngos = Member::orderBy('full_name', 'ASC')->get();
+        $ngos = Member::orderBy('full_name')->get();
+
+        foreach ($ngos as $ngo) {
+
+            // Count votes RECEIVED (not needed for your new request but kept)
+            $ngo->vote_count = Vote::where('candidate_id', $ngo->id)->count();
+
+            // List voters (not required for your question, but kept)
+            $ngo->voters = Member::whereIn(
+                'id',
+                Vote::where('candidate_id', $ngo->id)->pluck('member_id')
+            )->get();
+
+            // ✔ Count how many candidates this NGO supported
+            $ngo->supported_count = Vote::where('member_id', $ngo->id)->count();
+
+            // ✔ Get list of candidates this NGO voted for
+            $ngo->supported_candidates = Candidate::whereIn(
+                'id',
+                Vote::where('member_id', $ngo->id)->pluck('candidate_id')
+            )->get();
+        }
 
         return view('admin.ngos-list', compact('ngos'));
     }
