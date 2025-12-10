@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidate;
 use App\Models\Vote;
+use App\Models\Member;
 use Mpdf\Mpdf;
 use Mpdf\Config\ConfigVariables;
 use Mpdf\Config\FontVariables;
@@ -57,5 +58,13 @@ class AdminController extends Controller
         $mpdf->WriteHTML($html);
 
         return $mpdf->Output('voting.pdf', 'D');
+    }
+
+    public function ngosList()
+    {
+        // Get all NGOs (members)
+        $ngos = Member::orderBy('full_name', 'ASC')->get();
+
+        return view('admin.ngos-list', compact('ngos'));
     }
 }

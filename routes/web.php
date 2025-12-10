@@ -16,6 +16,7 @@ Route::post('/admin/logout', [AdminLoginController::class, 'logout'])
     ->name('admin.logout');
 
 Route::get('/admin/results', [AdminController::class, 'results'])->name('admin.results');
+Route::get('/admin/ngos', [AdminController::class, 'ngosList'])->name('admin.ngos');
 Route::get('/admin/results/pdf', [AdminController::class, 'exportResultsPDF'])
     ->name('admin.results.pdf');
 

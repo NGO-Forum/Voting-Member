@@ -7,12 +7,21 @@
             📊 លទ្ធផលបោះឆ្នោត
         </h2>
 
-        <form method="POST" action="{{ route('admin.logout') }}">
-            @csrf
-            <button class="px-4 py-2 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-600 transition">
-                ចេញពីគណនី
-            </button>
-        </form>
+        <div class="flex gap-3">
+            {{-- Button to Results Page --}}
+            <a href="{{ route('admin.ngos') }}"
+                class="px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
+                អង្គការមិនមែនរដ្ឋាភិបាល
+            </a>
+
+            {{-- Logout button --}}
+            <form method="POST" action="{{ route('admin.logout') }}">
+                @csrf
+                <button class="px-4 py-2 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-600 transition">
+                    ចេញពីគណនី
+                </button>
+            </form>
+        </div>
     </div>
 
     {{-- Total votes --}}
@@ -28,8 +37,7 @@
     </div>
 
     {{-- Candidate Results Grid --}}
-    <div
-        class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 space-y-1">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 space-y-1">
 
         @foreach ($candidates as $index => $candidate)
             @php
