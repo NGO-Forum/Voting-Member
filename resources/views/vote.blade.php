@@ -65,7 +65,7 @@
             </div>
 
             <p class="text-gray-500 text-sm mt-3">
-                ប្រព័ន្ធនឹងបិទការជ្រើសរើសបន្ទាប់ពីថ្ងៃទី ១៥ ខែធ្នូ ឆ្នាំ២០២៥។
+                ប្រព័ន្ធនឹងបិទការជ្រើសរើសបន្ទាប់ពីថ្ងៃទី ៦ ខែ​ មីនា ឆ្នាំ២០២៦។
             </p>
 
             <button class="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold">
@@ -75,7 +75,7 @@
         </form>
     </div>
 
-    {{-- JS to limit 3 selections --}}
+    {{-- JS to limit 5 selections --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const max = 5;

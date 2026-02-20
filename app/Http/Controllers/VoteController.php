@@ -6,9 +6,25 @@ use App\Models\Member;
 use App\Models\Candidate;
 use App\Models\Vote;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class VoteController extends Controller
 {
+    private function votingClosed(): bool
+    {
+        $tz = config('vote.timezone', config('app.timezone', 'Asia/Phnom_Penh'));
+        $deadline = Carbon::parse(config('vote.deadline'), $tz);
+        $now = Carbon::now($tz);
+
+        return $now->greaterThan($deadline); // closed AFTER deadline
+    }
+
+    private function deadlineText(): string
+    {
+        $tz = config('vote.timezone', config('app.timezone', 'Asia/Phnom_Penh'));
+        return Carbon::parse(config('vote.deadline'), $tz)->format('d-M-Y h:i A');
+    }
+
     // Login page
     public function loginForm()
     {
@@ -19,6 +35,11 @@ class VoteController extends Controller
     // Handle login
     public function login(Request $request)
     {
+        // ✅ Block login if voting closed
+        if ($this->votingClosed()) {
+            return back()->with('error', 'ការបោះឆ្នោតបានបិទរួចហើយ។ Deadline: ' . $this->deadlineText());
+        }
+
         $request->validate([
             'login_input' => 'required'
         ]);
@@ -57,6 +78,11 @@ class VoteController extends Controller
     // Show voting form
     public function voteForm()
     {
+        // ✅ Also block direct access to /vote after deadline
+        if ($this->votingClosed()) {
+            return redirect('/')->with('error', 'ការបោះឆ្នោតបានបិទរួចហើយ។ Deadline: ' . $this->deadlineText());
+        }
+
         $member = Member::where('short_name', session('member_id'))->firstOrFail();
 
         if ($member->has_voted) {
@@ -71,6 +97,11 @@ class VoteController extends Controller
     // Handle vote submission
     public function submitVote(Request $request)
     {
+        // ✅ Block submit after deadline too
+        if ($this->votingClosed()) {
+            return redirect('/')->with('error', 'ផុតកំណត់បោះឆ្នោតហើយ។ Deadline: ' . $this->deadlineText());
+        }
+
         $request->validate([
             'candidates' => 'required|array|max:5',
             'candidates.*' => 'exists:candidates,id',

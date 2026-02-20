@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ការបោះឆ្នោតសមាជិកបណ្តាញ ២០២៥</title>
+    <title>ការបោះឆ្នោតសមាជិកបណ្តាញ ២០២៦</title>
     <link rel="icon" type="logo" href="/logo.jpg" />
 
     {{-- TailwindCSS --}}
@@ -44,7 +44,7 @@
     <header class="bg-white shadow text-center">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <h1 class="text-xl md:text-3xl font-bold text-blue-600">
-                🗳️ ការបោះឆ្នោតសមាជិកបណ្តាញ NRLG ឆ្នាំ ២០២៥
+                🗳️ ការបោះឆ្នោតសមាជិកបណ្តាញ NECCAW ឆ្នាំ ២០២៦
             </h1>
             <p class="text-gray-500 mt-1 text-xs md:text-base">ប្រព័ន្ធបោះឆ្នោតតាមប្រព័ន្ធអេឡិកត្រូនិច។​ សូមជ្រើសរើសបេក្ខជនច្រើនបំផុត ៥ នាក់
                 និង អាចបោះឆ្នោតបានតែម្តងប៉ុណ្ណោះ!</p>
@@ -52,7 +52,7 @@
     </header>
 
     {{-- Main Page Content --}}
-    <main class="flex-1 max-w-8xl mx-auto w-full px-4 py-4">
+    <main class="flex-1 max-w-8xl mx-auto w-full px-4 py-4 max-h-[85vh] overflow-auto">
         @yield('content')
     </main>
 
